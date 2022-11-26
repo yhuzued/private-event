@@ -4,7 +4,17 @@
 
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> |
-  <%= link_to "Back to events", events_path %>
+  <%= link_to "Back to events", root_path %>
 
-  <%= button_to "Destroy this event", @event, method: :delete %>
+  <% if @event_creator == current_user%>
+    <%= button_to "Destroy this event", @event, method: :delete %>
+  <% end %>
 </div>
+
+<ol>
+  <% @event.attendee.each do |atten|%>
+    <li><%= atten.name %></li>
+  <% end %>
+</ol>
+
+<%= link_to 'text', new_event_reservation_path(@event) %>
