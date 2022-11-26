@@ -19,9 +19,7 @@ class ReservationsController < ApplicationController
 
       if @reservation.save
         redirect_to @event, notice: "Reservations was successfully created."
-      else
-        render @event, status: :unprocessable_entity
-      end
+      end   
     end
   end
 
