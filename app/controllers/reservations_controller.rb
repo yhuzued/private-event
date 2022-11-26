@@ -12,12 +12,16 @@ class ReservationsController < ApplicationController
 
   def create
     @event = Event.find(params[:event_id])
-    @reservation = @event.reservations.build(event_id: params[:id], attendee_id: current_user.id)
+    @check_reservation = @event.reservations.where(attendee_id: current_user.id).exists?
 
-    if @reservation.save
-      redirect_to @event, notice: "Reservations was successfully created."
-    else
-      render @event, status: :unprocessable_entity
+    unless @check_reservation
+      @reservation = @event.reservations.build(event_id: params[:id], attendee_id: current_user.id)
+
+      if @reservation.save
+        redirect_to @event, notice: "Reservations was successfully created."
+      else
+        render @event, status: :unprocessable_entity
+      end
     end
   end
 
