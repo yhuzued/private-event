@@ -11,10 +11,11 @@
   <% end %>
 </div>
 
-<ol>
+<%= button_to "Attend this event", event_reservations_path(@event), data: {turbo_method: :post} %>
+
+<ol data-tubro="false">
   <% @event.attendee.each do |atten|%>
     <li><%= atten.name %></li>
   <% end %>
 </ol>
 
-<%= link_to 'text', new_event_reservation_path(@event) %>
