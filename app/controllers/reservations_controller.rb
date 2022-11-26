@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :authenticate_user!, only: %i[ new create ]
+  before_action :authenticate_user!, only: %i[ new create destroy ]
 
   def index
     @event = Event.all
@@ -21,6 +21,13 @@ class ReservationsController < ApplicationController
         redirect_to @event, notice: "Reservations was successfully created."
       end   
     end
+  end
+
+  def destroy
+    @event = Event.find(params[:event_id])
+    @reservation = @event.reservations.where(attendee_id: current_user.id)
+    @reservation.destroy_all
+    redirect_to @event, alert: "Succesfully cancel your attendance  ."
   end
 
   private
