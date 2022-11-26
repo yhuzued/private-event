@@ -1,6 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
-
+<%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete } %>
 <h1>Events</h1>
 
 <div id="events">

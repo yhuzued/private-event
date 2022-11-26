@@ -11,8 +11,9 @@
   <% end %>
 </div>
 
-<%= button_to "Attend this event", event_reservations_path(@event), data: {turbo_method: :post} %>
-
+<%= button_to "Attend this event", event_reservations_path(@event), data: { turbo_method: :post } %>
+<%= link_to "Cancel your attendance", event_reservation_path(@event), data: { turbo_method: :delete } %>
+  
 <ol data-tubro="false">
   <% @event.attendee.each do |atten|%>
     <li><%= atten.name %></li>
