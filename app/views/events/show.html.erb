@@ -3,7 +3,9 @@
 <%= render @event %>
 
 <div>
-  <%= link_to "Edit this event", edit_event_path(@event) %> |
+  <% if @event_creator == current_user %>
+    <%= link_to "Edit this event", edit_event_path(@event) %> |
+  <% end %>
   <%= link_to "Back to events", root_path %>
 
   <% if @event_creator == current_user %>
