@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .card img {
+  min-height: 300px;
+  max-height: 300px;
+ }

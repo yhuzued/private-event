@@ -1,24 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<% imager_array = ["https://media.istockphoto.com/id/1194783078/id/foto/konsep-layanan-jejaring-sosial-streaming-video-perpustakaan-video.jpg?s=612x612&w=0&k=20&c=NPL-sstxspDVZO24rkclGBVgTNZqGd_08xOj2Lqok7M=", "https://media.istockphoto.com/id/1181250359/id/foto/pebisnis.jpg?s=612x612&w=0&k=20&c=AsEUXrIC2NYqycfEHr3_W_ZyR5dgzSuvLQb8dRMH0jg=", "https://media.istockphoto.com/id/1207062016/id/foto/penonton-bertepuk-tangan-di-teater.jpg?s=612x612&w=0&k=20&c=RZCaPaI68hqVDez1oz44tCZwU5iCyaf-X6TkdaKGgDg=", "https://media.istockphoto.com/id/600072788/id/foto/delegasi-penjaringan-di-resepsi-minuman-konferensi.jpg?s=612x612&w=0&k=20&c=Lds7c1tgPqWtuZ2tCfOYGffCjB4Ae2Atdl1ImlRkW9c=", "https://media.istockphoto.com/id/479977238/id/foto/pengaturan-tabel-untuk-pesta-acara-atau-resepsi-pernikahan.jpg?s=612x612&w=0&k=20&c=aJFnMuCk0KwsIF8_68eqZkoMitGgmw6K05F5ZDNCh30=", "https://media.istockphoto.com/id/961798406/id/foto/kacamata-sampanye-bergaya-dan-makanan-pembuka-makanan-di-atas-meja-di-resepsi-pernikahan.jpg?s=612x612&w=0&k=20&c=z6WWgXz5J88qy6YWVvs-vW0ZrvzONnbTzZvv0K5whDk="]%>
 
-<%= render @event %>
-
-<div>
-  <% if @event_creator == current_user %>
-    <%= link_to "Edit this event", edit_event_path(@event) %> |
-  <% end %>
-  <%= link_to "Back to events", root_path %>
-
-  <% if @event_creator == current_user %>
-    <%= button_to "Destroy this event", @event, method: :delete %>
-  <% end %>
-</div>
-
-<%= button_to "Attend this event", event_reservations_path(@event), data: { turbo_method: :post } %>
-<%= link_to "Cancel your attendance", event_reservation_path(@event), data: { turbo_method: :delete } %>
+<div class="container">
+  <div class="row p-2">
+    <%= render 'events/show_event' %>
+  </div>
+  <div>
+    <% if @event_creator == current_user %>
+      <%= link_to "Edit this event", edit_event_path(@event) %> |
+    <% end %>
+    <%= link_to "Back to events", root_path %>
   
-<ol data-tubro="false">
-  <% @event.attendee.each do |atten|%>
-    <li><%= atten.name %></li>
-  <% end %>
-</ol>
-
+    <% if @event_creator == current_user %>
+      <%= button_to "Destroy this event", @event, method: :delete %>
+    <% end %>
+  </div>
+  
+  <%= button_to "Attend this event", event_reservations_path(@event), data: { turbo_method: :post } %>
+  <%= link_to "Cancel your attendance", event_reservation_path(@event), data: { turbo_method: :delete } %>
+  
+  <ol data-tubro="false">
+    <% @event.attendee.each do |atten|%>
+      <li><%= atten.name %></li>
+    <% end %>
+  </ol>
+  
+</div>
