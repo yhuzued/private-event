@@ -26,6 +26,8 @@
       <% else %>
         <%= link_to "Attend this event", event_reservations_path(@event), data: { turbo_method: :post }, class: "btn btn-primary" %>
       <% end %>
+    <% else %>
+        <%= link_to "Attend this event", event_reservations_path(@event), data: { turbo_method: :post }, class: "btn btn-primary" %>
     <% end %>
       <h2 style="text-align: center" class="pt-2">Attendee</h2>
   </div>

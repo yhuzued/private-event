@@ -4,4 +4,5 @@ Rails.application.routes.draw do
     resources :reservations, only: [:new, :create, :destroy]
   end
   root "events#index"
+  get '/myevents', to: 'events#myevent'
 end
