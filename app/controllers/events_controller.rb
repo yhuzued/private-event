@@ -62,6 +62,7 @@ class EventsController < ApplicationController
   end
 
   def myevent
+    
   end
 
   private
