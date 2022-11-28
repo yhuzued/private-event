@@ -62,7 +62,7 @@ class EventsController < ApplicationController
   end
 
   def myevent
-    
+    @events = Event.all.includes(:creator).where(creator_id: current_user.id)
   end
 
   private
