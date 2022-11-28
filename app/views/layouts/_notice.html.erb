@@ -1,11 +1,15 @@
-<% if alert %>
-  <div>
-  <p style="text-align: center" onclick="this.parentElement.style.display='none';"><%= alert %> <a href="#" class="text-decoration-none">x</a></p>
+<div class="container">
+  <div class="d-flex justify-content-end">
+    <% if alert %>
+      <div class="p-2 mt-2">
+        <a href="#" class="btn btn-warning", onclick="this.parentElement.style.display='none';" ><%= alert %></a>
+      </div>
+    <% end %>
+    <% if notice %>
+      <div class="p-2 mt-2">
+        <a href="#" class="btn btn-info", onclick="this.parentElement.style.display='none';" ><%= notice %></a>
+      </div>
+    <% end %>
   </div>
-<% end %>
-<% if notice %>
-  <div>
-    <p style="text-align: center" onclick="this.parentElement.style.display='none';"><%= notice %> <a href="#" class="text-decoration-none">x</a></p>
-  </div>
-<% end %>
+</div>
 

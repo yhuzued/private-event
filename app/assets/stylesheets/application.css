@@ -18,3 +18,12 @@
   min-height: 300px;
   max-height: 300px;
  }
+
+ #new-event, #login-or-register {
+  min-height: 35vw;
+ }
+
+ #text-area {
+  resize: none;
+  min-height: 300px;
+ }

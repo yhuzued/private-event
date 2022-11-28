@@ -3,7 +3,7 @@
 <div class="container p-2">
   <h1 style="text-align: center" class="p-2">Latest Events</h1>
   <div class="row">
-    <% @events.each do |event| %>
+    <% @events.reverse_each do |event| %>
       <div class="col-md-6 g-3 d-flex align-items-stretch">
         <div id="events" class="card p-3">
           <img class="card-img-top rounded mx-auto d-block index-image" src="<%= imager_array.sample %>" alt="Card image cap">

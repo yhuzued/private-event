@@ -1,5 +1,5 @@
 <div id="<%= dom_id event %>">
-  <h3 class="card-title"><%= event.name %></h3>
+  <h3 class="card-title"><%= link_to event.name, event, class: "text-decoration-none text-black" %></h3>
     <p>
       <%= event.description.truncate(150) %>
     </p>
