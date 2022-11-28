@@ -1,31 +1,33 @@
 <% imager_array = ["https://media.istockphoto.com/id/1194783078/id/foto/konsep-layanan-jejaring-sosial-streaming-video-perpustakaan-video.jpg?s=612x612&w=0&k=20&c=NPL-sstxspDVZO24rkclGBVgTNZqGd_08xOj2Lqok7M=", "https://media.istockphoto.com/id/1181250359/id/foto/pebisnis.jpg?s=612x612&w=0&k=20&c=AsEUXrIC2NYqycfEHr3_W_ZyR5dgzSuvLQb8dRMH0jg=", "https://media.istockphoto.com/id/1207062016/id/foto/penonton-bertepuk-tangan-di-teater.jpg?s=612x612&w=0&k=20&c=RZCaPaI68hqVDez1oz44tCZwU5iCyaf-X6TkdaKGgDg=", "https://media.istockphoto.com/id/600072788/id/foto/delegasi-penjaringan-di-resepsi-minuman-konferensi.jpg?s=612x612&w=0&k=20&c=Lds7c1tgPqWtuZ2tCfOYGffCjB4Ae2Atdl1ImlRkW9c=", "https://media.istockphoto.com/id/479977238/id/foto/pengaturan-tabel-untuk-pesta-acara-atau-resepsi-pernikahan.jpg?s=612x612&w=0&k=20&c=aJFnMuCk0KwsIF8_68eqZkoMitGgmw6K05F5ZDNCh30=", "https://media.istockphoto.com/id/961798406/id/foto/kacamata-sampanye-bergaya-dan-makanan-pembuka-makanan-di-atas-meja-di-resepsi-pernikahan.jpg?s=612x612&w=0&k=20&c=z6WWgXz5J88qy6YWVvs-vW0ZrvzONnbTzZvv0K5whDk="]%>
 
-<img class="card-img-top rounded mx-auto d-block" src="<%= imager_array.sample %>" alt="Card image cap">
-<h3 class="card-title"><%= @event_creator.name %></h3>
-  <p>
-    <%= @event_creator.description %>
-  </p>
-  <ul class="list-group list-group-flush p-2">
-  <div>
-    <li class="list-group-item">
-      <p>
-        <i class="bi bi-geo-alt"></i>
-        <%= @event_creator.location %>
-      </p>
-    </li>
-    <li class="list-group-item">
-      <p>
-        <i class="bi bi-calendar-date"></i>
-        <%= @event_creator.date %>
-      </p>
-    </li>
+<div class="container p-3">
+  <div class="show-event">
+    <img class="card-img-top rounded d-block overlay" src="<%= imager_array.sample %>" alt="Card image cap">
+    <h3 class="card-title p-2"><%= @event_creator.name %></h3>
+    <p class="card-title p-2"><%= @event_creator.description %></p>
+    <ul class="list-group list-group-flush p-2">
+      <div>
+        <li class="list-group-item">
+          <p>
+            <i class="bi bi-geo-alt"></i>
+            <%= @event_creator.location %>
+          </p>
+        </li>
+        <li class="list-group-item">
+          <p>
+            <i class="bi bi-calendar-date"></i>
+            <%= @event_creator.date %>
+          </p>
+        </li>
+      </div>
+      <div>
+      <li class="list-group-item">
+        <p>
+          <strong>Hosted by:</strong>
+          <%= @event_creator.creator.name %>
+        </p>
+      </li>
+      </div>
+    </ul>
   </div>
-  <div>
-  <li class="list-group-item">
-    <p>
-      <strong>Hosted by:</strong>
-      <%= @event_creator.creator.name %>
-    </p>
-  </li>
-  </div>
-</ul>
+</div>
