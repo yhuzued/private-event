@@ -11,13 +11,15 @@
     <% end %>
   </div>
   
-  <%= button_to "Attend this event", event_reservations_path(@event), data: { turbo_method: :post }, class: "btn btn-primary" %>
-  <%= link_to "Cancel your attendance", event_reservation_path(@event), data: { turbo_method: :delete }, class: "btn btn-danger" %>
-  
-  <ol data-tubro="false">
-    <% @event.attendee.each do |atten|%>
-      <li><%= atten.name %></li>
+  <div class="d-flex justify-content-center">
+    <% if @event.attendee.where(id: current_user.id).any? %>
+      <%= link_to "Cancel your attendance", event_reservation_path(@event), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+    <% else %>
+      <%= button_to "Attend this event", event_reservations_path(@event), data: { turbo_method: :post }, class: "btn btn-primary" %>
     <% end %>
-  </ol>
+  </div>
   
+  <%= render 'events/table' %>
 </div>
+
+
