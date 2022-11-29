@@ -65,6 +65,14 @@ class EventsController < ApplicationController
     @events = Event.all.includes(:creator).where(creator_id: current_user.id)
   end
 
+  def past_event
+    @events = Event.past_events
+  end
+
+  def future_event
+    @events = Event.future_events
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_event
