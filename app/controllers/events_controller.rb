@@ -66,11 +66,11 @@ class EventsController < ApplicationController
   end
 
   def past_event
-    @events = Event.past_events
+    @events = Event.past_events.includes(:attendee)
   end
 
   def future_event
-    @events = Event.future_events
+    @events = Event.future_events.includes(:attendee)
   end
 
   private

@@ -1,20 +1,59 @@
 <% imager_array = ["https://media.istockphoto.com/id/1194783078/id/foto/konsep-layanan-jejaring-sosial-streaming-video-perpustakaan-video.jpg?s=612x612&w=0&k=20&c=NPL-sstxspDVZO24rkclGBVgTNZqGd_08xOj2Lqok7M=", "https://media.istockphoto.com/id/1181250359/id/foto/pebisnis.jpg?s=612x612&w=0&k=20&c=AsEUXrIC2NYqycfEHr3_W_ZyR5dgzSuvLQb8dRMH0jg=", "https://media.istockphoto.com/id/1207062016/id/foto/penonton-bertepuk-tangan-di-teater.jpg?s=612x612&w=0&k=20&c=RZCaPaI68hqVDez1oz44tCZwU5iCyaf-X6TkdaKGgDg=", "https://media.istockphoto.com/id/600072788/id/foto/delegasi-penjaringan-di-resepsi-minuman-konferensi.jpg?s=612x612&w=0&k=20&c=Lds7c1tgPqWtuZ2tCfOYGffCjB4Ae2Atdl1ImlRkW9c=", "https://media.istockphoto.com/id/479977238/id/foto/pengaturan-tabel-untuk-pesta-acara-atau-resepsi-pernikahan.jpg?s=612x612&w=0&k=20&c=aJFnMuCk0KwsIF8_68eqZkoMitGgmw6K05F5ZDNCh30=", "https://media.istockphoto.com/id/961798406/id/foto/kacamata-sampanye-bergaya-dan-makanan-pembuka-makanan-di-atas-meja-di-resepsi-pernikahan.jpg?s=612x612&w=0&k=20&c=z6WWgXz5J88qy6YWVvs-vW0ZrvzONnbTzZvv0K5whDk="]%>
-
-<div class="container p-2 mb-2">
-  <h1 style="text-align: center" class="p-2">Future Events</h1>
-  <div class="row">
-    <% @events.reverse_each do |event| %>
-      <div class="col-md-6 g-3 d-flex align-items-stretch">
-        <div id="events" class="card p-3">
-          <img class="card-img-top rounded mx-auto d-block index-image" src="<%= imager_array.sample %>" alt="Card image cap">
-          <div class="card-body">
-            <%= render event %>
+<% if user_signed_in? %>
+  <div class="container p-2">
+    <h1 style="text-align: center" class="p-2">Upcoming Events You Would Attend</h1>
+    <div class="row">
+      <% @events.reverse_each do |event| %>
+        <% if event.attendee.where(attendee: current_user).any?  %>
+          <div class="col-md-6 g-3 d-flex align-items-stretch">
+            <div id="events" class="card p-3">
+              <img class="card-img-top rounded mx-auto d-block index-image" src="<%= imager_array.sample %>" alt="Card image cap">
+              <div class="card-body">
+                <%= render event %>
+              </div>
+              <div class="card-footer">
+                <p><%= link_to "Show this event", event, class: "btn btn-primary" %></p>
+              </div>
+            </div>
           </div>
-          <div class="card-footer">
-            <p><%= link_to "Show this event", event, class: "btn btn-primary" %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <h1 style="text-align: center" class="p-2">All Upcoming Events</h1>
+    <div class="row">
+      <% @events.reverse_each do |event| %>
+        <div class="col-md-6 g-3 d-flex align-items-stretch">
+          <div id="events" class="card p-3">
+            <img class="card-img-top rounded mx-auto d-block index-image" src="<%= imager_array.sample %>" alt="Card image cap">
+            <div class="card-body">
+              <%= render event %>
+            </div>
+            <div class="card-footer">
+              <p><%= link_to "Show this event", event, class: "btn btn-primary" %></p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
+<% else %>
+  <div class="container p-2 mb-2">
+    <h1 style="text-align: center" class="p-2">Upcoming Events</h1>
+    <div class="row">
+      <% @events.reverse_each do |event| %>
+        <div class="col-md-6 g-3 d-flex align-items-stretch">
+          <div id="events" class="card p-3">
+            <img class="card-img-top rounded mx-auto d-block index-image" src="<%= imager_array.sample %>" alt="Card image cap">
+            <div class="card-body">
+              <%= render event %>
+            </div>
+            <div class="card-footer">
+              <p><%= link_to "Show this event", event, class: "btn btn-primary" %></p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+

@@ -12,22 +12,20 @@
     </thead>
     <tbody>
       <% @event.attendee.each_with_index do |atten, index|%>
-        <% if user_signed_in? %>
-          <% if atten.email == current_user.email %>
-            <tr class="table-primary">
-              <td><%= index + 1 %></td>
-              <td><%= atten.email %></th>
-              <td><%= atten.name %></td>
-              <td><%= message_array.sample %></td>
-            </tr>
-          <% end %>
-        <% else %>
-          <tr>
+        <% if current_user == atten %>
+          <tr class="table table-primary">
             <td><%= index + 1 %></td>
             <td><%= atten.email %></td>
             <td><%= atten.name %></th>
             <td><%= message_array.sample %></td>
           </tr>
+        <% else %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= atten.email %></td>
+          <td><%= atten.name %></th>
+          <td><%= message_array.sample %></td>
+        </tr>
         <% end %>
       <% end %>
     </tbody>
